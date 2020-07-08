@@ -26,6 +26,9 @@
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #
 
+
+# GUI for the popup window for user to select the available camera, and returns the indexes of the selected camera.
+
 from tkinter import *
 
 
@@ -33,10 +36,10 @@ class SelectDevice:
     def __init__(self, parent, devices):
         self.device_id = None
 
-        top = self.top = Toplevel(parent)
+        top = self.top = Toplevel(parent)  # initiate object "top" of Tkinter class "Toplevel" makes pop up windows
         top.attributes("-toolwindow", 1)
         top.attributes("-topmost", 1)
-        top.geometry("250x200")
+        top.geometry("250x250")
         top.resizable(False, False)
         top.columnconfigure(0, weight=1)
         top.rowconfigure(1, weight=1)
@@ -44,7 +47,7 @@ class SelectDevice:
         self.myLabel = Label(top, text='Select a video device:')
         self.myLabel.grid(padx=5, pady=5)
 
-        self.listbox = Listbox(top, selectmode=SINGLE)
+        self.listbox = Listbox(top, selectmode=SINGLE)  # tkinter class that Displays a list
         self.listbox.grid(sticky=W + E + N + S, padx=5, pady=5)
         for item in devices:
             self.listbox.insert(END, item)
@@ -55,5 +58,5 @@ class SelectDevice:
         top.bind('<Return>', lambda event: self.send())
 
     def send(self):
-        self.device_id = self.listbox.curselection()[0]
+        self.device_id = self.listbox.curselection()[0]  # return the indexes of the item selected in the listbox
         self.top.destroy()
