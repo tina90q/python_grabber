@@ -15,7 +15,7 @@ graph.prepare_preview_graph()
 graph.run()
 print("Press 'C' or 'c' to grab photo, another key to exit")
 while cv2.waitKey(0) in [ord('c'), ord('C')]:
-    graph.grab_frame()
+    graph.grab_frame()  # captures an image
 graph.stop()
 cv2.destroyAllWindows()
 print("Done")

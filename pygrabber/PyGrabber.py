@@ -31,7 +31,7 @@ from pygrabber.dshow_graph import *
 
 class PyGrabber:
     def __init__(self, callback):
-        self.graph = FilterGraph()
+        self.graph = FilterGraph()  # instance of class FilterGraphy
         self.callback = callback
         self.preview_graph_prepared = False
         self.recording_prepared = False

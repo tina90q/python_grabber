@@ -8,11 +8,11 @@
 from pygrabber.dshow_graph import FilterGraph
 from tkinter import Tk
 
-graph = FilterGraph()
+graph = FilterGraph()  # initiate an object of image filter
 graph.add_video_input_device(0)  # set up video input from the first camera indexed 0 (add source filter)
 graph.add_default_render()  # add the default render filter to the image signals
 graph.prepare_preview_graph()  # combine two filters
 graph.run()  # execute the graph
 root = Tk()
-root.withdraw()  # hide Tkinter main window
+# root.withdraw()  # hide Tkinter main window
 root.mainloop()

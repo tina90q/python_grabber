@@ -55,8 +55,9 @@ class MainWindow:
         master.columnconfigure(1, weight=1, uniform="group1")
         master.rowconfigure(0, weight=1)
 
+        # naming areas of the GUI
         self.video_area = Frame(master, bg='black')
-        self.video_area.grid(row=0, column=0, sticky=W+E+N+S, padx=5, pady=5)
+        self.video_area.grid(row=0, column=0, sticky=W+E+N+S, padx=5, pady=5)  # padx or pady means to create 5 blank pixel around the area to look nicer
 
         self.status_area = Frame(master)
         self.status_area.grid(row=1, column=0, sticky=W+E+N+S, padx=5, pady=5)
@@ -65,10 +66,14 @@ class MainWindow:
         self.image_area.grid(row=0, column=1, sticky=W+E+N+S, padx=5, pady=5)
 
         self.image_controls_area = Frame(master)
-        self.image_controls_area.grid(row=1, column=1, padx=5, pady=0)
+        self.image_controls_area.grid(row=1, column=1, padx=5, pady=5)
 
         self.image_controls_area2 = Frame(master)
-        self.image_controls_area2.grid(row=2, column=1, padx=5, pady=0)
+        self.image_controls_area2.grid(row=2, column=1, padx=5, pady=5)
+
+
+        self.microscope_control_area = Frame(master)
+        self.microscope_control_area.grid(row=2, column=0, padx=5, pady=5)
 
         # Grabbed image
         fig = Figure(figsize=(5, 4), dpi=100)
@@ -90,7 +95,7 @@ class MainWindow:
         self.image_filter_orig_btn = Button(self.image_controls_area, text="Original", command=self.restore_original_image)
         self.image_filter_orig_btn.pack(padx=5, pady=2, side=LEFT)
 
-        self.image_filter_1_btn = Button(self.image_controls_area, text="Sepia", command=self.image_filter(sepia))
+        '''self.image_filter_1_btn = Button(self.image_controls_area, text="Sepia", command=self.image_filter(sepia))
         self.image_filter_1_btn.pack(padx=5, pady=2, side=LEFT)
 
         self.image_filter_2_btn = Button(self.image_controls_area, text="Edge Preserving", command=self.image_filter(edge_preserving))
@@ -100,12 +105,28 @@ class MainWindow:
         self.image_filter_3_btn.pack(padx=5, pady=2, side=LEFT)
 
         self.image_filter_4_btn = Button(self.image_controls_area2, text="Pencil Sketch", command=self.image_filter(pencil_sketch))
-        self.image_filter_4_btn.pack(padx=5, pady=2, side=LEFT)
+        self.image_filter_4_btn.pack(padx=5, pady=2, side=LEFT)'''
 
+        # button to save image, does't work right now
         self.save_btn = Button(self.image_controls_area2, text="Save", command=self.save_image)
         self.save_btn.pack(padx=5, pady=2, side=LEFT)
 
         self.video_area.bind("<Configure>", self.on_resize)
+
+        # microscope_move.py control buttons
+        self.left_btn = Button(self.microscope_control_area, text=u"\u2190", command= None)  # await command
+        self.left_btn.pack(padx=5, pady=2, side=LEFT)
+
+        self.right_btn = Button(self.microscope_control_area, text=u"\u2192", command=None)  # await command
+        self.right_btn.pack(padx=5, pady=2, side=LEFT)
+
+        self.forward_btn = Button(self.microscope_control_area, text=u"\u2193", command=None)  # await command
+        self.forward_btn.pack(padx=5, pady=2, side=LEFT)
+
+        self.backward_btn = Button(self.microscope_control_area, text=u"\u2191", command=None)  # await command
+        self.backward_btn.pack(padx=5, pady=2, side=LEFT)
+
+
 
     def create_menu(self, master):
         menubar = Menu(master)
@@ -129,6 +150,7 @@ class MainWindow:
         recording_menu.add_command(label="Stop recording", command=self.stop)
         menubar.add_cascade(label="Video Recording", menu=recording_menu)
 
+    # displays camera preview
     def display_image(self):
         while self.queue.qsize():
             try:
@@ -213,9 +235,9 @@ class MainWindow:
         filename = filedialog.asksaveasfilename(
             initialdir="/",
             title="Select file",
-            filetypes=[('PNG', ".png"), ('JPG', ".jpg")])
+            filetypes=[('PNG', ".png")])
         if filename is not None:
-            save_image(filename, self.image)
+            save_image(filename+".png", self.image)
 
     def image_filter(self, process_function):
         def inner():
