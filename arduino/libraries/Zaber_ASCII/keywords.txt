@@ -1,0 +1,15 @@
+#######################################
+# keywords.txt
+#
+# Allows for syntax-highlighting in the
+# Arduino IDE
+#######################################
+
+ZaberAscii	KEYWORD1
+Command		KEYWORD1
+
+send	KEYWORD2
+pollUntilIdle	KEYWORD2
+receive	KEYWORD2
+
+reply	DATA_TYPE
