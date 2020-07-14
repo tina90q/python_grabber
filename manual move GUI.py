@@ -9,17 +9,21 @@ move = Move()
 window = tkinter.Tk()
 Button = tkinter.Button
 
+# stop button
+stop_btn = Button(window, text="stop", command=move.stop)  # sends 0
+
 # make 4 buttons, one for each direction
-left_btn = Button(window, text=u"\u2190", command=move.move_left)
-right_btn = Button(window, text=u"\u2192", command=move.move_right)
-forward_btn = Button(window, text=u"\u2193", command=move.move_forward)
-backward_btn = Button(window, text=u"\u2191", command=move.move_backward)
+minus_y_btn = Button(window, text=u"\u2190", command=move.minus_y)  # sends 1
+plus_y_btn = Button(window, text=u"\u2192", command=move.plus_y)  # sends 2
+plus_x_btn = Button(window, text=u"\u2193", command=move.plus_x)  # sends 3
+minus_x_btn = Button(window, text=u"\u2191", command=move.minus_x)  # sends 4
 
 # place buttons
-left_btn.grid(row=1, column=0)
-right_btn.grid(row=1, column=2)
-forward_btn.grid(row=2, column=1)
-backward_btn.grid(row=0, column=1)
+stop_btn.grid(row=1, column=3)
+minus_y_btn.grid(row=1, column=0)
+plus_y_btn.grid(row=1, column=2)
+plus_x_btn.grid(row=2, column=1)
+minus_x_btn.grid(row=0, column=1)
 
 # run the window in a loop, or else it will close immediately after opening
 window.mainloop()

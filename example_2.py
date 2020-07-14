@@ -14,5 +14,5 @@ graph.add_default_render()  # add the default render filter to the image signals
 graph.prepare_preview_graph()  # combine two filters
 graph.run()  # execute the graph
 root = Tk()
-# root.withdraw()  # hide Tkinter main window
+root.withdraw()  # hide Tkinter main window
 root.mainloop()

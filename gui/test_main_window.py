@@ -30,6 +30,7 @@ import queue
 from matplotlib.figure import Figure
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 from tkinter import filedialog
+from microscope.microscope_move import Move
 
 from gui.SelectDevice import *
 from gui.ConfigureRecording import *
@@ -111,20 +112,24 @@ class MainWindow:
         self.save_btn = Button(self.image_controls_area2, text="Save", command=self.save_image)
         self.save_btn.pack(padx=5, pady=2, side=LEFT)
 
-        self.video_area.bind("<Configure>", self.on_resize)
+        self.video_area.bind("<Configure>", self.on_resize)  # upon the event <configure> widget size change, call self.on_resize
 
         # microscope_move.py control buttons
-        self.left_btn = Button(self.microscope_control_area, text=u"\u2190", command= None)  # await command
-        self.left_btn.pack(padx=5, pady=2, side=LEFT)
+        move = Move()
+        self.stop_btn = Button(self.microscope_control_area, text="stop", command=move.stop)  # sends 0
+        self.stop_btn.pack(padx=5, pady=2, side=LEFT)
 
-        self.right_btn = Button(self.microscope_control_area, text=u"\u2192", command=None)  # await command
-        self.right_btn.pack(padx=5, pady=2, side=LEFT)
+        self.minus_y_btn = Button(self.microscope_control_area, text=u"\u2190", command=move.minus_y)  # await command
+        self.minus_y_btn.pack(padx=5, pady=2, side=LEFT)
 
-        self.forward_btn = Button(self.microscope_control_area, text=u"\u2193", command=None)  # await command
-        self.forward_btn.pack(padx=5, pady=2, side=LEFT)
+        self.plus_y_btn = Button(self.microscope_control_area, text=u"\u2192", command=move.plus_y)  # await command
+        self.plus_y_btn.pack(padx=5, pady=2, side=LEFT)
 
-        self.backward_btn = Button(self.microscope_control_area, text=u"\u2191", command=None)  # await command
-        self.backward_btn.pack(padx=5, pady=2, side=LEFT)
+        self.plus_x_btn = Button(self.microscope_control_area, text=u"\u2193", command=move.plus_x)  # await command
+        self.plus_x_btn.pack(padx=5, pady=2, side=LEFT)
+
+        self.minus_x_btn = Button(self.microscope_control_area, text=u"\u2191", command=move.minus_x)  # await command
+        self.minus_x_btn.pack(padx=5, pady=2, side=LEFT)
 
 
 
