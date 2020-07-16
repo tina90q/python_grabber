@@ -5,10 +5,13 @@ import serial
 
 class Move:
     def __init__(self):
-        self.arduinoData = serial.Serial('COM5', 9600)   # open serial communication to arduino, on COM5 with Baud-rate 9600
+        self.arduinoData = serial.Serial('COM3', 9600)   # open serial communication to arduino, on COM5 with Baud-rate 9600
 
     def stop(self):
         self.arduinoData.write('0'.encode('utf-8'))  # stop motor
+
+    def home(self):
+        self.arduinoData.write('5'.encode('utf-8'))  # stop motor
 
     def minus_y(self):
         self.arduinoData.write('1'.encode('utf-8'))  # sends the arduino 'l', to move to the left at max speed

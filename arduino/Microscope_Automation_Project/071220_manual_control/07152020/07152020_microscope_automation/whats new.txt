@@ -1,0 +1,4 @@
+automatically homes at start
+things are now orgainized into functions
+
+next... hook up y-endstop, add home button to GUI

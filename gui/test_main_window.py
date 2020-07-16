@@ -116,6 +116,10 @@ class MainWindow:
 
         # microscope_move.py control buttons
         move = Move()
+
+        self.home_btn = Button(self.microscope_control_area, text="HOME", command=move.home)  # sends 5
+        self.home_btn.pack(padx=5, pady=2, side=LEFT)
+
         self.stop_btn = Button(self.microscope_control_area, text="stop", command=move.stop)  # sends 0
         self.stop_btn.pack(padx=5, pady=2, side=LEFT)
 
@@ -130,6 +134,8 @@ class MainWindow:
 
         self.minus_x_btn = Button(self.microscope_control_area, text=u"\u2191", command=move.minus_x)  # await command
         self.minus_x_btn.pack(padx=5, pady=2, side=LEFT)
+
+
 
 
 
